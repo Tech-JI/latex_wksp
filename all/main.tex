@@ -1,0 +1,165 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{minted}
+\usepackage{bookmark}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % loads maths fonts
+\usepackage{geometry}
+\usepackage{esint}
+\usepackage{systeme}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{relsize}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{ulem}
+\usepackage{systeme}
+\usepackage{longtable}
+\usepackage{newverbs}
+\usepackage{xurl}
+\usepackage{listings}
+\usepackage{float}
+\usemintedstyle{autumn}
+\setminted{
+    breaklines,
+    fontsize=\footnotesize,
+    tabsize=4,
+    xleftmargin=2em
+}
+\setmintedinline{
+	fontsize=\footnotesize
+}
+
+\newmintinline[LC]{latex}{}
+\newmintinline[LCS]{latex}{fontsize=\scriptsize}
+\newminted[LCL]{latex}{}
+\newcommand{\LCX}[1]{$#1$ & \LC|#1|}
+\newverbcommand{\LCXV}%
+{\VerbatimOut{\jobname.tmp}}%
+{\endVerbatimOut%
+1 & 1}
+\DeclareMathOperator{\Mr}{M_{\mathbb{R}}}
+\floatstyle{ruled}
+\newfloat{program}{thp}{lop}
+\floatname{program}{Program}
+
+\newenvironment{warning}{\begin{center}\begin{minipage}{\textwidth}\large \bf \color{red}}{\end{minipage}\end{center}}
+\newenvironment{latexexample}{\begin{example}}{\end{example}}
+\newenvironment{command}{\begin{block}{Command}}{\end{block}}
+\newcommand{\samplebegin}[1]{\structure{\textbackslash begin}\{#1\}}
+\newcommand{\sampleend}[1]{\structure{\textbackslash end}\{#1\}}
+\newcommand{\samplecommand}[1]{\alert{\textbackslash #1}}
+\newcommand{\samplecolorbox}[1]{\fcolorbox{black}{#1}{\color{#1}{\tiny{\phantom{0000}}}} \small{#1}}
+\newcommand{\sampletext}[2]{\samplecommand{#1} - {#2{Sample Text}}}
+\newcommand{\sampleaccent}[3]{\samplecommand{#1}\{#3\}\quad #2{#3}}
+\newcommand{\samplesymbol}[2]{\samplecommand{#1}\quad #2}
+\newcommand{\urllink}[1]{\href{#1}{\beamergotobutton{Link}}}
+\newcommand{\packagename}[1]{\structure{\texttt{#1}}}
+
+\newenvironment{latexexampleframe}
+{\VerbatimOut{\jobname.tmp}}
+{\endVerbatimOut
+
+\begin{frame}
+\begin{example}
+\inputminted{latex}{./\jobname.tmp}
+\end{example}
+\end{frame}
+
+\begin{frame}
+\input{./\jobname.tmp}
+\end{frame}
+}
+
+\newenvironment{latexexamplesplit}
+{\VerbatimOut{\jobname.tmp}}
+{\endVerbatimOut
+
+\begin{example}
+\begin{minipage}{0.48\textwidth}
+~
+\inputminted{latex}{./\jobname.tmp}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\input{./\jobname.tmp}
+\end{minipage}
+\end{example}
+}
+
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{section in toc}[sections numbered]
+
+\hypersetup{colorlinks=true,linkcolor=purple,filecolor=magenta,urlcolor=purple}
+\AtBeginSection[]{
+    \begin{frame}{Table of Contents}
+        \small
+        \begin{multicols}{2}
+        \tableofcontents[currentsection]
+        \end{multicols}
+    \end{frame}
+}
+
+\urlstyle{same}
+
+\title{Introduction to \LaTeX\  from a Practical Perspective}
+\author{\hyperlink{https://github.com/TechJI-2023/latex_wksp}{Z. Zhou}, \hyperlink{https://github.com/Hydraallen}{R. Wang}}
+\institute{TechJI}
+\date{\today}
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \begin{figure}
+        \centering
+        \caption*{Wechat Group}
+        \includegraphics[width=2.5cm]{./qrcode.jpg}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Agenda}
+    \begin{itemize}
+        \item General Introduction to \LaTeX \hspace*{\fill} \textit{by} Z.~Zhou
+        \item Introduction to \packagename{Tikz} \hspace*{\fill} \textit{by} Z.~Zhou
+        \item Beamer \hspace*{\fill} \textit{by} Z.~Zhou
+        \item Introduction to \packagename{Bibtex} \hspace*{\fill} \textit{by} M.~Huang
+    \end{itemize}
+\end{frame}
+
+\input{../intro/main}
+\input{../document/main}
+\input{../text/main}
+\input{../math/main}
+\input{../graphic/main}
+
+\section*{References}
+
+\begin{frame}{References}
+    \begin{thebibliography}{9}
+        \bibitem{wikibook}
+        Wikibook. \url{https://en.wikibooks.org/wiki/LaTeX}.
+        \bibitem{overleaf}
+        Overleaf Knowledge Base. \url{https://www.overleaf.com/learn}.
+        \bibitem{techji}
+        linsyking, fakefred et al. \LaTeX\ Lecture. \url{https://github.com/linsyking/latex-wksp}.
+        \bibitem{techji}
+        tc-imba, zhang et al. \LaTeX\ Lecture. \url{https://github.com/SJTU-UMJI-Tech/LaTeX}.
+    \end{thebibliography}
+\end{frame}
+
+\begin{frame}{Resources}
+    \begin{itemize}
+        \item \href{https://wch.github.io/latexsheet/}{\LaTeX\  Cheet Sheet}
+        \item \href{https://www.ctan.org/}{The Comprehensive \TeX\ Archive Network}
+        \item \href{https://github.com/egeerardyn/awesome-LaTeX}{Awesome \LaTeX}
+    \end{itemize}
+\end{frame}
+
+\end{document}
